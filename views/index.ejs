@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Accreditation</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Data Kampus</h1>
+    <table id="campusTable">
+        <thead>
+            <tr>
+                <th>Nama Kampus</th>
+                <th>Kualifikasi Dosen</th>
+                <th>Kurikulum</th>
+                <th>Metode Pengajaran</th>
+                <th>Publikasi</th>
+                <th>Pendanaan</th>
+                <th>Kolaborasi Penelitian</th>
+                <th>Laboratorium</th>
+                <th>Perpustakaan</th>
+                <th>Infrastruktur IT</th>
+                <th>Workshop</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% campuses.forEach(function(campus) { %>
+                <tr>
+                    <td><%= campus.campusName %></td>
+                    <td><%= campus.kualifikasiDosen %></td>
+                    <td><%= campus.kurikulum %></td>
+                    <td><%= campus.metodePengajaran %></td>
+                    <td><%= campus.publikasi %></td>
+                    <td><%= campus.pendanaan %></td>
+                    <td><%= campus.kolaborasiPenelitian %></td>
+                    <td><%= campus.laboratorium %></td>
+                    <td><%= campus.perpustakaan %></td>
+                    <td><%= campus.infrastrukturIT %></td>
+                    <td><%= campus.workshop %></td>
+                    <td>
+                        <button class="editButton" data-id="<%= campus.id %>">Edit</button>
+                        <button class="deleteButton" data-id="<%= campus.id %>">Delete</button>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <canvas id="campusChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const editButtons = document.querySelectorAll('.editButton');
+            const deleteButtons = document.querySelectorAll('.deleteButton');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    // Add your edit logic here
+                });
+            });
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    fetch(`/campuses/${id}`, {
+                        method: 'DELETE'
+                    }).then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        }
+                    });
+                });
+            });
+
+            const ctx = document.getElementById('campusChart').getContext('2d');
+            const campusChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: <%= JSON.stringify(campuses.map(campus => campus.campusName)) %>,
+                    datasets: [{
+                        label: 'Kualifikasi Dosen',
+                        data: <%= JSON.stringify(campuses.map(campus => campus.kualifikasiDosen)) %>,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Kurikulum',
+                        data: <%= JSON.stringify(campuses.map(campus => campus.kurikulum)) %>,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                    // Add more datasets for each criteria as needed
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

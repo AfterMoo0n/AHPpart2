@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Accreditation</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Input Nilai Kampus</h1>
+    <form id="campusForm">
+        <label for="campusName">Nama Kampus:</label>
+        <input type="text" id="campusName" name="campusName" required><br><br>
+
+        <label for="kualifikasiDosen">Kualifikasi Dosen:</label>
+        <input type="number" id="kualifikasiDosen" name="kualifikasiDosen" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="kurikulum">Kurikulum:</label>
+        <input type="number" id="kurikulum" name="kurikulum" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="metodePengajaran">Metode Pengajaran:</label>
+        <input type="number" id="metodePengajaran" name="metodePengajaran" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="publikasi">Publikasi:</label>
+        <input type="number" id="publikasi" name="publikasi" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="pendanaan">Pendanaan:</label>
+        <input type="number" id="pendanaan" name="pendanaan" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="kolaborasiPenelitian">Kolaborasi Penelitian:</label>
+        <input type="number" id="kolaborasiPenelitian" name="kolaborasiPenelitian" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="laboratorium">Laboratorium:</label>
+        <input type="number" id="laboratorium" name="laboratorium" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="perpustakaan">Perpustakaan:</label>
+        <input type="number" id="perpustakaan" name="perpustakaan" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="infrastrukturIT">Infrastruktur IT:</label>
+        <input type="number" id="infrastrukturIT" name="infrastrukturIT" step="0.01" min="0" max="1" required><br><br>
+
+        <label for="workshop">Workshop:</label>
+        <input type="number" id="workshop" name="workshop" step="0.01" min="0" max="1" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Data Kampus</h2>
+    <table id="campusTable">
+        <thead>
+            <tr>
+                <th>Nama Kampus</th>
+                <th>Kualifikasi Dosen</th>
+                <th>Kurikulum</th>
+                <th>Metode Pengajaran</th>
+                <th>Publikasi</th>
+                <th>Pendanaan</th>
+                <th>Kolaborasi Penelitian</th>
+                <th>Laboratorium</th>
+                <th>Perpustakaan</th>
+                <th>Infrastruktur IT</th>
+                <th>Workshop</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here via JavaScript -->
+        </tbody>
+    </table>
+
+    <script src="/script.js"></script>
+</body>
+</html>
